@@ -34,5 +34,3 @@ def get_mask_account(account_number: int) -> str:
     masked_acc += str(account_number)[16:]  # Добавляем последние 4 цифры.
 
     return masked_acc
-
-#  Проверка коммита
