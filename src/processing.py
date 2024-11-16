@@ -1,4 +1,4 @@
-def filter_by_state(records: list, state="EXECUTED") -> list:
+def filter_by_state(records: list, state_choose: str = "EXECUTED") -> list:
     """
     Возвращает новый список словарей, у которых ключ state соответствует указанному значению.
     :param records: Принимает на вход список словарей с данными о банковских операциях.
@@ -9,13 +9,13 @@ def filter_by_state(records: list, state="EXECUTED") -> list:
     new_records = []
 
     for record in records:
-        if state in record["state"]:
-            new_records.append(dir)
+        if state_choose in record["state"]:
+            new_records.append(record)
 
     return new_records
 
 
-def sort_by_date(records: list, sort_option ='True') -> list:
+def sort_by_date(records: list, sort_option: bool = True) -> list:
     """
     Сортирует список словарей по убыванию(default) или возрастанию.
     :param records: принимает список словарей с данными о бансковских операциях.
@@ -25,9 +25,9 @@ def sort_by_date(records: list, sort_option ='True') -> list:
 
     sorted_records = []
 
-    if sort_option == 'True':
+    if sort_option:
         sorted_records = sorted(records, key=lambda record: record["date"], reverse=True)
-    elif sort_option == 'False':
+    elif sort_option is not True:
         sorted_records = sorted(records, key=lambda record: record["date"])
 
     return sorted_records
