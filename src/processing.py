@@ -1,4 +1,4 @@
-def filter_by_state(records: list, state_choose: str = "EXECUTED") -> list:
+def filter_by_state(records: list, state: str = "EXECUTED") -> list:
     """
     Возвращает новый список словарей, у которых ключ state соответствует указанному значению.
     :param records: Принимает на вход список словарей с данными о банковских операциях.
@@ -9,7 +9,7 @@ def filter_by_state(records: list, state_choose: str = "EXECUTED") -> list:
     new_records = []
 
     for record in records:
-        if state_choose in record["state"]:
+        if state == record["state"]:
             new_records.append(record)
 
     return new_records
