@@ -1,5 +1,6 @@
 from typing import Generator, Dict, Any
 
+
 def filter_by_currency(transactions: list[dict], value: str) -> Generator[Dict[str, Any], None, None]:
     for transaction in transactions:
         if transaction["operationAmount"]["currency"]["code"] == value:
