@@ -20,10 +20,11 @@ def get_exchange(transaction: dict) -> Any:
     """
     code = transaction["operationAmount"]["currency"]["code"]
     amount = transaction["operationAmount"]["amount"]
-
-    url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={code}&amount={amount}"
-    headers = {"apikey": f"{api_key}"}
-    response = requests.request("GET", url, headers=headers)
-    result = response.json()
-
-    return round(result["result"], 2)
+    if code != "RUB":
+        url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={code}&amount={amount}"
+        headers = {"apikey": f"{api_key}"}
+        response = requests.request("GET", url, headers=headers)
+        result = response.json()
+        return round(result["result"], 2)
+    else:
+        return f"Валюта уже в рублях! {amount}"
