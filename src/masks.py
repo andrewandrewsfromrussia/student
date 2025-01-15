@@ -1,13 +1,21 @@
+import logging
+
+logger = logging.getLogger("masks")
+
+logger.setLevel(logging.DEBUG)
+file_handler = logging.FileHandler("..\\logs\\masks.log", encoding="utf-8")
+file_formatter = logging.Formatter("%(asctime)s - %(name)s -%(levelname)s: %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
+
 def get_mask_card_number(card_number: int) -> str:
     """
-    Возвращает маску введенного номера карты.
-
-    Args:
-        card_number: Номер карты.
-
-    Returns:
-        Маскированный номер карты в формате ХХХХ ХХ** **** ХХХХ.
+    Возвращает замаскированный номер карты в виде строки.
+    :param card_number: номер карты.
+    :return: замаскированный номер карты.
     """
+    logger.info("Функция начинает работу...")
     if card_number is not None:
         card_number_check = len(str(card_number))  # Длинна номера карты
         if card_number_check == 16:  # Проверка длинны номера карты
@@ -16,10 +24,13 @@ def get_mask_card_number(card_number: int) -> str:
             masked_num += str(card_number)[12:]  # Последние 4 цифры
             masked_num = " ".join(masked_num[i : i + 4] for i in range(0, len(masked_num), 4))  # Добавляем пробелы
 
+            logger.info("Функция успешно завершает работу.")
             return masked_num  # Возвращаем замаскированный номер карты в виде строки
 
+        logger.error("Функция неудачно завершает работу.")
         return "Введите 16 значный номер карты."  # Возвращаем сообщение об ошибке.
 
+    logger.error("ОШИБКА! Поле ввода не может быть пустым.")
     return "Ввод не может быть пустым."
 
 
@@ -34,14 +45,18 @@ def get_mask_account(account_number: int) -> str:
         Замаскированный номер аккаунта в формате **ХХХХ.
     """
 
+    logger.info("Функция начинает работу...")
     if account_number is not None:
         account_number_check = len(str(account_number))  # Длинна номера счета.
         if account_number_check == 20:  # Проверка длинны номера счета.
             masked_acc = "**"  # Новая переменная
             masked_acc += str(account_number)[16:]  # Добавляем последние 4 цифры.
 
+            logger.info("Функция успешно завершает работу.")
             return masked_acc
 
+        logger.error("Функция неудачно завершает работу.")
         return "Введите 20-ти значный номер счета."  # Возвращаем сообщение об ошибке.
 
+    logger.error("ОШИБКА! Поле ввода не может быть пустым.")
     return "Ввод не может быть пустым."
