@@ -60,6 +60,11 @@ _Этот модуль содержит функцию для чтения JSON 
 _Этот модуль содержит функцию для конвертации валют в рубли с использованием стороннего сервиса._
 * get_exchange(transaction) - где transaction - список словарей с операциями.
 
+### ***__src/reader_csv_xlsx.py__***
+_Этот модуль содержит функции для чтения csv и xlsx файлов._
+* read_csv(csv_path) - где csv_path - путь к файлу csv.
+* read_xlsx(xlsx_path) - где xlsx_path - путь к файлу xlsx.
+
 ### ***__Тестирование__***
 ***tests/test_masks.py***
 * test_get_mask_card_number(card_number, expected) - тесты для проверки работоспособности функции.\
