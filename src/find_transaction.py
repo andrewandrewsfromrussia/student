@@ -20,5 +20,13 @@ def count_transaction_types(transactions):
     Подсчитывает количество банковских операций определенного типа.
     """
 
-    transaction_types = [transaction.get("description", "Неизвестный тип") for transaction in transactions]
-    return Counter(transaction_types)
+    category_counts = Counter()
+
+    for transaction in transactions:
+        description = transaction.get("description", "").lower()
+
+        for category in categories:
+            if category.lower() in description:
+                category_counts[category] += 1
+
+    return dict(category_counts)
