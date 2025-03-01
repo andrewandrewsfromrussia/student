@@ -3,8 +3,6 @@ import logging
 import os
 from typing import Any
 
-PATH_JSON = os.path.join("..", "data", "operations.json")
-
 logger = logging.getLogger("utils")
 
 logger.setLevel(logging.DEBUG)
