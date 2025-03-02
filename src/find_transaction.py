@@ -2,9 +2,12 @@ import re
 from collections import Counter
 
 
-def find_transactions(transactions, search_string):
+def find_transactions(transactions: list, search_string: str) -> list:
     """
-    Поиск транзакций по описанию.
+    Функция поиска по строке.
+    :param transactions: список словарей с операциями.
+    :param search_string: строка поиска.
+    :return: список словарей по ключу.
     """
     return [
         transaction
@@ -15,9 +18,12 @@ def find_transactions(transactions, search_string):
     ]
 
 
-def count_transaction_types(transactions):
+def count_transaction_types(transactions: list, categories: dict) -> dict:
     """
     Подсчитывает количество банковских операций определенного типа.
+    :param transactions: Список словарей с операциями.
+    :param categories: Категории операций.
+    :return:
     """
 
     category_counts = Counter()
