@@ -1,20 +1,12 @@
 def filter_by_state(records: list, state: str = "EXECUTED") -> list:
     """
-    Возвращает новый список словарей, у которых ключ state соответствует указанному значению.
-    :param records: Принимает на вход список словарей с данными о банковских операциях.
-    :param state: EXECUTED(default) or CANCELED.
-    :return: Возвращает новый список словарей.
+    Фильтрует записи по статусу (state).
     """
-    # Проверка соответствия типа данных:
-    if not isinstance(records, list):
-        return "Ошибка данных."
-
-    # Основная структура:
-    new_records = []
+    filtered_records = []
     for record in records:
-        if state == record["state"]:
-            new_records.append(record)
-    return new_records
+        if record.get("state", "").upper() == state.upper():
+            filtered_records.append(record)
+    return filtered_records
 
 
 def sort_by_date(records: list, sort_option: bool = True) -> list:
